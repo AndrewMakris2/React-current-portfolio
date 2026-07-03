@@ -1011,6 +1011,96 @@
       color: var(--text-dim);
       font-family: var(--font-mono);
     }
+    .writeup-card.live { cursor: pointer; }
+    .writeup-card.live .writeup-title { color: var(--text); }
+    .writeup-card.live:hover .writeup-title { color: var(--accent); }
+    .writeup-read-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      margin-top: auto;
+      padding-top: 8px;
+    }
+    .article-modal-body {
+      padding: 40px;
+    }
+    .article-header {
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border-card);
+    }
+    .article-cat {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .article-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+    .article-byline {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+    .article-content h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 28px 0 12px;
+      color: var(--text);
+    }
+    .article-content p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+    .article-content ul {
+      margin: 0 0 16px 0;
+      padding-left: 20px;
+    }
+    .article-content li {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 6px;
+      list-style: disc;
+    }
+    .article-content li::marker {
+      color: var(--accent);
+    }
+    .article-content strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+    .article-content .callout {
+      background: var(--accent-dim);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 16px 20px;
+      margin: 20px 0;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .article-footer-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-card);
+    }
     .coming-soon-banner {
       text-align: center;
       padding: 20px;
@@ -1024,14 +1114,9 @@
     .coming-soon-banner span { color: var(--accent); }
 
     /* ============================================
-       CTF WRITEUPS
-    ============================================ */
-    #ctf { background: var(--bg-card); }
-
-    /* ============================================
        CURRENTLY WORKING ON
     ============================================ */
-    #working-on { background: var(--bg); }
+    #working-on { background: var(--bg-card); }
     .working-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -1080,7 +1165,7 @@
     /* ============================================
        TESTIMONIALS
     ============================================ */
-    #testimonials { background: var(--bg-card); }
+    #testimonials { background: var(--bg); }
     .testimonials-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1150,7 +1235,7 @@
     /* ============================================
        CONTACT
     ============================================ */
-    #contact { background: var(--bg); }
+    #contact { background: var(--bg-card); }
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1.2fr;
@@ -1243,13 +1328,6 @@
       color: var(--text-dim);
       font-family: var(--font-mono);
     }
-    /* ============== BACKEND HOOKUP NOTE ==============
-       To wire up the contact form:
-       Option A (Netlify): Add data-netlify="true" to <form> — Netlify handles submissions automatically.
-       Option B (Formspree): Set action="https://formspree.io/f/YOUR_FORM_ID" method="POST"
-       Option C (EmailJS): Use emailjs.sendForm() in the submit handler below (see JS section).
-       Replace the showFormSuccess() stub with your actual submission logic.
-    ================================================== */
 
     /* ============================================
        FOOTER
@@ -1467,7 +1545,6 @@
   <a href="#projects"       onclick="closeMobileNav()">Projects</a>
   <a href="#services"       onclick="closeMobileNav()">Services</a>
   <a href="#writeups"       onclick="closeMobileNav()">Writeups</a>
-  <a href="#ctf"            onclick="closeMobileNav()">CTF</a>
   <a href="#contact"        onclick="closeMobileNav()">Contact</a>
 </div>
 
@@ -1533,9 +1610,9 @@
         <p class="section-label">About Me</p>
         <h2 class="section-title">Security analyst.<br>Blue team advocate.</h2>
         <p>
-          I'm an <strong>Information Security Analyst</strong> currently working across three organizations —
-          Virtix Health / CorroHealth, Mechanical Orchard, and 1stResponder — protecting enterprise environments
-          through SOC operations, vulnerability management, and proactive threat detection.
+          I'm an <strong>Information Security Analyst</strong> working full-time at <strong>Mechanical Orchard</strong>,
+          part-time at <strong>CorroHealth</strong>, and on contract with <strong>1stResponder</strong> — protecting enterprise
+          environments through SOC operations, vulnerability management, and proactive threat detection.
         </p>
         <p>
           With <strong>3+ years of hands-on enterprise security experience</strong>, I specialize in email security,
@@ -2077,75 +2154,34 @@
   <div class="container">
     <p class="section-label">Knowledge</p>
     <h2 class="section-title">Security Writeups</h2>
-    <p class="section-subtitle">Threat modeling walkthroughs, IR deep-dives, and security research. Coming soon.</p>
+    <p class="section-subtitle">Threat modeling walkthroughs, IR deep-dives, and security research.</p>
 
     <div class="writeups-grid reveal">
 
-      <div class="writeup-card">
+      <div class="writeup-card live" onclick="openWriteup('threatModeling')">
         <div class="writeup-cat">Threat Modeling</div>
         <div class="writeup-title">Building a Threat Model for a Healthcare SaaS Environment</div>
-        <div class="writeup-excerpt">A walkthrough of applying STRIDE and MITRE ATT&CK to map attack surfaces in a HIPAA-adjacent SaaS stack — and how we prioritized remediations. <em>Coming soon.</em></div>
-        <div class="writeup-meta">Coming Soon · ~12 min read</div>
+        <div class="writeup-excerpt">Applying STRIDE and MITRE ATT&CK to map attack surfaces in a HIPAA-adjacent SaaS stack — scoping, methodology, risk prioritization, and what good output looks like.</div>
+        <div class="writeup-meta">Andrew Makris · ~12 min read</div>
+        <div class="writeup-read-btn">Read Article →</div>
       </div>
 
-      <div class="writeup-card">
+      <div class="writeup-card live" onclick="openWriteup('phishing')">
         <div class="writeup-cat">Incident Response</div>
         <div class="writeup-title">Anatomy of a Phishing Campaign: Detection to Containment</div>
-        <div class="writeup-excerpt">How a credential-harvesting phishing kit bypassed filters, what the detection timeline looked like in Exabeam, and how we hardened the environment post-incident. <em>Coming soon.</em></div>
-        <div class="writeup-meta">Coming Soon · ~15 min read</div>
+        <div class="writeup-excerpt">How a credential-harvesting campaign bypassed email filters, what the detection timeline looked like, and how we hardened the environment post-incident.</div>
+        <div class="writeup-meta">Andrew Makris · ~15 min read</div>
+        <div class="writeup-read-btn">Read Article →</div>
       </div>
 
-      <div class="writeup-card">
+      <div class="writeup-card live" onclick="openWriteup('aiSecOps')">
         <div class="writeup-cat">AI &amp; Security</div>
         <div class="writeup-title">AI in Security Operations: Practical Use Cases &amp; Risks</div>
-        <div class="writeup-excerpt">My take on where AI genuinely helps analysts versus where it introduces new attack surface — from LLM prompt injection to AI-assisted triage. <em>Coming soon.</em></div>
-        <div class="writeup-meta">Coming Soon · ~10 min read</div>
+        <div class="writeup-excerpt">Where AI genuinely helps SOC analysts versus where it introduces new attack surface — from LLM prompt injection to automation bias in triage workflows.</div>
+        <div class="writeup-meta">Andrew Makris · ~10 min read</div>
+        <div class="writeup-read-btn">Read Article →</div>
       </div>
 
-    </div>
-
-    <div class="coming-soon-banner">
-      <span>✦</span> Full writeup series launching soon — subscribe on LinkedIn for updates
-    </div>
-  </div>
-</section>
-
-<!-- ============================================
-     CTF WRITEUPS
-============================================ -->
-<section id="ctf" class="section">
-  <div class="container">
-    <p class="section-label">Research</p>
-    <h2 class="section-title">CTF Writeups &amp; Security Research</h2>
-    <p class="section-subtitle">Capture The Flag challenge walkthroughs and independent security research notes.</p>
-
-    <div class="writeups-grid reveal">
-
-      <div class="writeup-card">
-        <div class="writeup-cat">CTF · Web</div>
-        <div class="writeup-title">Challenge Writeup Coming Soon</div>
-        <div class="writeup-excerpt">Placeholder for an upcoming CTF web exploitation writeup. Details will include the exploit chain, tools used, and key takeaways. <em>Coming soon.</em></div>
-        <div class="writeup-meta">Coming Soon · Difficulty: Medium</div>
-      </div>
-
-      <div class="writeup-card">
-        <div class="writeup-cat">CTF · Forensics</div>
-        <div class="writeup-title">Challenge Writeup Coming Soon</div>
-        <div class="writeup-excerpt">Placeholder for a forensics challenge writeup — memory analysis, disk artifacts, or network packet analysis. <em>Coming soon.</em></div>
-        <div class="writeup-meta">Coming Soon · Difficulty: Hard</div>
-      </div>
-
-      <div class="writeup-card">
-        <div class="writeup-cat">Research</div>
-        <div class="writeup-title">Research Note Coming Soon</div>
-        <div class="writeup-excerpt">Placeholder for an independent security research note — malware analysis, detection engineering, or threat intelligence. <em>Coming soon.</em></div>
-        <div class="writeup-meta">Coming Soon</div>
-      </div>
-
-    </div>
-
-    <div class="coming-soon-banner">
-      <span>✦</span> CTF participation and writeups in progress — check <a href="https://github.com/AndrewMakris2" target="_blank" rel="noopener">GitHub</a> for updates
     </div>
   </div>
 </section>
@@ -2165,34 +2201,16 @@
         <div>
           <div class="working-label">Studying</div>
           <div class="working-value">CompTIA SecurityX</div>
-          <div class="working-sub">CAS-005 — Advanced security practitioner cert</div>
+          <div class="working-sub">CAS-005 advanced security practitioner cert</div>
         </div>
       </div>
 
       <div class="working-card">
-        <div class="working-icon green">🏗️</div>
+        <div class="working-icon green">🔍</div>
         <div>
-          <div class="working-label">Building</div>
-          <div class="working-value">GainTrack PWA</div>
-          <div class="working-sub">Fitness tracking progressive web app</div>
-        </div>
-      </div>
-
-      <div class="working-card">
-        <div class="working-icon purple">💰</div>
-        <div>
-          <div class="working-label">Building</div>
-          <div class="working-value">MoneyTrack PWA</div>
-          <div class="working-sub">Personal finance tracking app</div>
-        </div>
-      </div>
-
-      <div class="working-card">
-        <div class="working-icon yellow">📖</div>
-        <div>
-          <div class="working-label">Reading</div>
-          <div class="working-value">— Placeholder —</div>
-          <div class="working-sub">Update with current book or resource</div>
+          <div class="working-label">Studying</div>
+          <div class="working-value">Risk Assessment Frameworks</div>
+          <div class="working-sub">HITRUST, NIST RMF, and quantitative risk analysis</div>
         </div>
       </div>
 
@@ -2304,8 +2322,7 @@
         </div>
       </div>
 
-      <form class="contact-form" id="contactForm" onsubmit="handleFormSubmit(event)">
-        <!-- BACKEND HOOKUP: See the note in CSS for wiring options (Netlify / Formspree / EmailJS) -->
+      <form class="contact-form" id="contactForm" name="contact" method="POST" data-netlify="true" onsubmit="handleFormSubmit(event)">
         <div class="form-row">
           <div class="form-group">
             <label class="form-label" for="name">Name</label>
@@ -2328,7 +2345,7 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
           Send Message
         </button>
-        <p class="form-note">// Form UI only — wire up a backend to enable sending (see code comments)</p>
+        <p class="form-note">// Powered by Netlify Forms</p>
       </form>
     </div>
   </div>
@@ -2355,6 +2372,16 @@
 </div>
 
 <!-- ============================================
+     WRITEUP ARTICLE MODAL
+============================================ -->
+<div class="modal-overlay" id="writeupOverlay" onclick="handleWriteupOverlayClick(event)">
+  <div class="modal" id="writeupModal" style="max-width:720px;">
+    <button class="modal-close" onclick="closeWriteup()" aria-label="Close">✕</button>
+    <div class="article-modal-body" id="writeupContent"></div>
+  </div>
+</div>
+
+<!-- ============================================
      FOOTER
 ============================================ -->
 <footer id="footer">
@@ -2369,7 +2396,6 @@
         <a href="#projects">Projects</a>
         <a href="#services">Services</a>
         <a href="#writeups">Writeups</a>
-        <a href="#ctf">CTF</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -2560,11 +2586,7 @@ document.querySelectorAll('.certs-grid, .working-grid, .testimonials-grid').forE
 });
 
 /* ============================================
-   CONTACT FORM
-   Wire up real submission here:
-   - Netlify: add data-netlify="true" to <form>
-   - Formspree: set form action to your endpoint
-   - EmailJS: use emailjs.sendForm() below
+   CONTACT FORM (Netlify Forms)
 ============================================ */
 function handleFormSubmit(e) {
   e.preventDefault();
@@ -2572,12 +2594,14 @@ function handleFormSubmit(e) {
   btn.disabled = true;
   btn.innerHTML = '⟳ Sending...';
 
-  // REPLACE THIS with your actual submission call:
-  // emailjs.sendForm('SERVICE_ID', 'TEMPLATE_ID', '#contactForm')
-  //   .then(() => showFormSuccess(), () => showFormError());
-
-  // Stub — remove this setTimeout when wired up:
-  setTimeout(() => showFormSuccess(), 800);
+  const form = document.getElementById('contactForm');
+  fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams(new FormData(form)).toString(),
+  })
+    .then(res => res.ok ? showFormSuccess() : showFormError())
+    .catch(() => showFormError());
 }
 
 function showFormSuccess() {
@@ -2609,15 +2633,15 @@ const PROJECTS = {
     image: 'assets/threathunt-hero.jpg',
     desc: `A purpose-built web platform for structured threat hunting operations. Designed to bring discipline and repeatability to hypothesis-driven hunting — analysts can create and track hunt hypotheses, log findings, document TTPs against the MITRE ATT&CK framework, and generate reports for SecOps leadership.\n\nBuilt to solve a real problem: most orgs do ad-hoc threat hunting with no consistent process or documentation. This platform changes that.`,
     liveUrl: 'https://threathunt.netlify.app/',
-    githubUrl: '#',
+    githubUrl: 'https://github.com/AndrewMakris2/threatHuntGenerator',
   },
   threatModeling: {
     title: 'Threat Modeling Tool',
     tags: ['Threat Modeling', 'STRIDE', 'MITRE ATT&CK', 'Risk'],
-    image: 'assets/threatmodel-hero.jpg',
+    image: 'assets/threatmodel-hero.webp',
     desc: `A structured threat modeling application built to help security teams systematically identify and prioritize threats across systems and applications. Walk through STRIDE methodology, map threats to MITRE ATT&CK techniques, assign risk ratings, and export findings into shareable reports.\n\nDesigned for both analysts running assessments and leadership needing visibility into their attack surface — without the overhead of manual spreadsheet-based workflows.`,
-    liveUrl: '#',
-    githubUrl: '#',
+    liveUrl: 'https://threatmodelanalyzer.netlify.app/',
+    githubUrl: 'https://github.com/AndrewMakris2/React-ThreatModel',
   },
   riskAssessment: {
     title: 'Risk Assessment Dashboard',
@@ -2667,8 +2691,247 @@ function handleOverlayClick(e) {
   if (e.target === document.getElementById('modalOverlay')) closeModal();
 }
 
+/* ============================================
+   WRITEUP ARTICLES
+============================================ */
+const WRITEUPS = {
+  threatModeling: {
+    cat: 'Threat Modeling',
+    title: 'Building a Threat Model for a Healthcare SaaS Environment',
+    byline: 'Andrew Makris, CySA+, SecAI+ &middot; ~12 min read',
+    tags: ['STRIDE', 'MITRE ATT&CK', 'HIPAA', 'Healthcare SaaS', 'Risk Prioritization'],
+    content: `
+      <h3>Why Healthcare SaaS Is a Unique Target</h3>
+      <p>Healthcare SaaS sits in a weird spot. You've got PHI, insurance data, and EHR integrations all stacked on top of each other, which makes the attack surface dense and high-value. On top of that, shared-responsibility cloud models make it unclear who actually owns what from a security controls standpoint.</p>
+      <p>HIPAA 164.308(a)(1) requires a documented risk analysis. Most orgs check that box on paper, but very few actually use it to drive decisions. And then you factor in BAA relationships, which extend your trust boundary to every third-party vendor touching the environment. It gets complicated fast.</p>
+      <p class="callout">Most orgs treat threat modeling like a compliance checkbox. If you do it right though, it informs your pentest scope, prioritizes your control gaps, and satisfies auditors all at the same time.</p>
+
+      <h3>Scoping the Environment</h3>
+      <p>Before you start modeling threats, you need to be honest about what's actually in scope. I break it down into these areas:</p>
+      <ul>
+        <li><strong>Application layer:</strong> web, mobile, APIs, and especially FHIR/HL7 endpoints</li>
+        <li><strong>Identity &amp; access:</strong> your IdP (Okta, Azure AD), SAML federations, service accounts, MFA enforcement</li>
+        <li><strong>Data layer:</strong> PHI at rest, in transit, in backups, and who has access to each</li>
+        <li><strong>Third-party integrations:</strong> EHR vendors like Epic and Cerner, clearinghouses, billing platforms</li>
+        <li><strong>Cloud infrastructure:</strong> compute, storage, networking under shared responsibility</li>
+        <li><strong>End users:</strong> clinicians, patients, admins, external vendors, all with different trust levels</li>
+      </ul>
+
+      <h3>Methodology: STRIDE</h3>
+      <p>I use STRIDE for this because it's structured, repeatable, and maps well to the threats healthcare environments actually deal with. The process starts with building a Data Flow Diagram (DFD) that covers every component, data flow, and trust boundary. Then you apply STRIDE to each node and edge systematically.</p>
+      <p>The DFD is where the real value comes from honestly. It forces implicit architecture decisions to become explicit, and that's usually where you find the stuff nobody was thinking about.</p>
+
+      <h3>STRIDE Applied to Healthcare</h3>
+      <ul>
+        <li><strong>Spoofing:</strong> credential stuffing on patient/provider portals, compromised SSO tokens impersonating clinicians</li>
+        <li><strong>Tampering:</strong> HL7 record modification in transit, manipulated API responses between EHR and SaaS layer</li>
+        <li><strong>Repudiation:</strong> admin actions with no immutable audit trail, shared service accounts that break non-repudiation</li>
+        <li><strong>Information Disclosure:</strong> PHI leaking through misconfigured S3 buckets, verbose API errors, insecure direct object references</li>
+        <li><strong>Denial of Service:</strong> API abuse against scheduling or prescription endpoints, auth service exhaustion</li>
+        <li><strong>Elevation of Privilege:</strong> RBAC gaps that allow cross-tenant PHI access, misconfigured IAM roles in AWS</li>
+      </ul>
+
+      <h3>Layering In MITRE ATT&amp;CK</h3>
+      <p>STRIDE tells you what category of threat you're looking at. ATT&amp;CK tells you how adversaries actually execute it, which bridges the gap between theoretical risk and detection/control validation. The techniques I find most relevant in healthcare SaaS:</p>
+      <ul>
+        <li><strong>T1078 (Valid Accounts):</strong> compromised credentials are still the number one initial access vector in healthcare breaches</li>
+        <li><strong>T1190 (Exploit Public-Facing App):</strong> FHIR APIs and patient portals are the main external attack surface</li>
+        <li><strong>T1566 (Phishing):</strong> the leading delivery mechanism for credential harvesting in the sector</li>
+        <li><strong>T1550.001 (Application Access Token):</strong> OAuth token abuse in EHR integration layers</li>
+        <li><strong>T1530 (Data from Cloud Storage Object):</strong> misconfigured storage is still a persistent PHI exposure risk</li>
+      </ul>
+
+      <h3>Risk Prioritization</h3>
+      <p>A flat list of 40 findings is not a risk model. It's noise. You have to prioritize on two axes: likelihood given your specific environment, and impact accounting for HIPAA exposure.</p>
+      <ul>
+        <li><strong>Critical:</strong> cross-tenant PHI access, IdP compromise, unencrypted PHI in transit. This is OCR investigation and BAA violation territory.</li>
+        <li><strong>High:</strong> RBAC misconfigurations, service account credential exposure, over-privileged third-party access</li>
+        <li><strong>Medium:</strong> API abuse vectors, verbose error messages, missing audit logging on sensitive operations</li>
+        <li><strong>Low:</strong> availability risks without data exposure, documentation gaps</li>
+      </ul>
+
+      <h3>What Good Output Looks Like</h3>
+      <p>A threat model should produce at least one of these three things. If it doesn't, the engagement didn't actually close the loop:</p>
+      <ul>
+        <li>An updated risk register entry with documented rationale</li>
+        <li>A prioritized control gap list tied to specific findings</li>
+        <li>An informed pentest scope that tells you what to test, in what order, and why</li>
+      </ul>
+      <p class="callout">The most valuable thing a threat model produces isn't the findings list. It's the shared understanding of attack surface between security, engineering, and leadership. That alignment is what actually changes behavior.</p>
+
+      <h3>Key Takeaways</h3>
+      <ul>
+        <li>Threat modeling is a living process. Architecture changes, and so does your attack surface.</li>
+        <li>STRIDE + ATT&amp;CK together give you the "what" and the "how." Use both.</li>
+        <li>If your engagement doesn't tie back to a risk register update or a pentest scope, you wasted the effort.</li>
+        <li>In healthcare, compliance and operational value don't have to be separate things. A good threat model serves both.</li>
+      </ul>
+    `,
+  },
+  phishing: {
+    cat: 'Incident Response',
+    title: 'Anatomy of a Phishing Campaign: Detection to Containment',
+    byline: 'Andrew Makris, CySA+, SecAI+ &middot; ~15 min read',
+    tags: ['Phishing', 'Email Security', 'Incident Response', 'SOC', 'Mimecast', 'Inky'],
+    content: `
+      <p class="callout">Email filters catch a lot. But what really matters is what your detection pipeline looks like when something gets through. And something always gets through.</p>
+
+      <h3>The Campaign</h3>
+      <p>This was a credential harvesting campaign hitting enterprise email users. The attackers used a multi-stage redirect chain that was designed to get past automated URL scanning while showing the end user a convincing login portal. The goal was straightforward: grab valid credentials for lateral movement and data access.</p>
+
+      <h3>How It Bypassed Filters</h3>
+      <p>Understanding how something bypasses your filters is just as important as understanding how it was delivered. Attackers actively research how vendor filtering logic works, and they build campaigns around those gaps.</p>
+      <ul>
+        <li><strong>Domain reputation:</strong> the campaign used infrastructure that hadn't been flagged yet. Newly staged or compromised domains with clean reputation scores.</li>
+        <li><strong>Payload delivery:</strong> the URLs passed initial scanning because the redirect chain held off on serving the malicious payload until after the click happened.</li>
+        <li><strong>Filter gap:</strong> our layered email security (Inky and Mimecast) caught different signals. Figuring out which tool flagged what, and which one missed, is where the real operational insight is.</li>
+      </ul>
+
+      <h3>Detection Timeline</h3>
+      <p>Timelines show you what your actual capability is versus what you think it is. Every gap in the timeline is worth asking questions about.</p>
+      <ul>
+        <li><strong>T+0:</strong> Initial delivery hits inboxes</li>
+        <li><strong>First detection signal:</strong> automated alert or user report triggers analyst review</li>
+        <li><strong>Analyst triage:</strong> header analysis, URL detonation, scoping how many recipients were hit</li>
+        <li><strong>Escalation decision:</strong> enough criteria met to escalate based on scope and credential exposure risk</li>
+        <li><strong>Containment initiated:</strong> mailbox remediation, IOC blocking, user notification</li>
+      </ul>
+      <p>That gap between delivery and first detection signal is the most honest metric a SOC has. Everything that happens after depends on how fast you close that gap.</p>
+
+      <h3>Containment Actions</h3>
+      <p>These are the steps we took in order. Sequence matters here just as much as the actions themselves:</p>
+      <ul>
+        <li><strong>Mailbox remediation:</strong> find all affected messages across the tenant, pull them from inboxes, quarantine them</li>
+        <li><strong>IOC blocking:</strong> sender domains, redirect URLs, and payload infrastructure all go on blocklists at the email gateway and web proxy</li>
+        <li><strong>User notification:</strong> targeted communication to recipients with clear instructions on what to do if they clicked and what to watch for</li>
+        <li><strong>Vendor coordination:</strong> escalated to Mimecast and Inky for rule updates and detection signature submission</li>
+        <li><strong>Leadership communication:</strong> scope, impact, and containment status framed in a way that makes sense to non-technical stakeholders</li>
+      </ul>
+
+      <h3>Post-Incident Hardening</h3>
+      <p>Containment handles the immediate risk. Hardening is about closing the structural gap so the same thing doesn't work twice.</p>
+      <ul>
+        <li>Updated email gateway rules to flag the specific redirect pattern this campaign used</li>
+        <li>Added SIEM detection logic for the behavioral indicators we observed during triage</li>
+        <li>Reviewed and tightened URL rewriting and time-of-click scanning policies</li>
+        <li>Updated the IR playbook based on what we learned from the response</li>
+      </ul>
+
+      <h3>What the Detection Gap Revealed</h3>
+      <p>A filter miss is not a tool failure. It's a signal about your detection architecture. The real question you should be asking is whether you have downstream visibility to catch what the perimeter misses.</p>
+      <p>Layered email security works, but only if the layers are actually testing different hypotheses. Two tools checking the same indicators at the same time just gives you redundancy, not depth. Real depth comes from combining automated scanning with behavioral detection and analyst-driven hunting.</p>
+
+      <h3>Key Takeaways</h3>
+      <ul>
+        <li>No email security stack catches everything. Your response capability is what matters when something gets through.</li>
+        <li>Detection timelines are the most honest measure of SOC effectiveness you have. Track them.</li>
+        <li>Hardening only matters if it's tied to a specific gap the incident exposed. Generic "improvements" don't count.</li>
+        <li>Vendor coordination with Mimecast, Inky, etc. takes longer than your internal response. Build that into your timeline expectations.</li>
+      </ul>
+    `,
+  },
+  aiSecOps: {
+    cat: 'AI & Security',
+    title: 'AI in Security Operations: Practical Use Cases & Risks',
+    byline: 'Andrew Makris, CySA+, SecAI+ &middot; ~10 min read',
+    tags: ['AI Security', 'SecAI+', 'SOC', 'LLM', 'Prompt Injection', 'HIPAA'],
+    content: `
+      <p class="callout">AI is genuinely useful in a SOC. It also introduces real attack surface. Both of those things are true, and understanding both is what SecAI+ is actually about.</p>
+
+      <h3>Where I'm Coming From</h3>
+      <p>I hold a CompTIA SecAI+, which is one of the first purpose-built credentials for AI security. That shapes how I think about this topic. I'm also using AI tooling across two concurrent security roles, so this is coming from a practitioner perspective, not a vendor pitch.</p>
+      <p>My take is simple: AI augments analyst judgment. It does not replace it. Any tool that blurs that line is a risk, not a feature.</p>
+
+      <h3>Where AI Actually Helps</h3>
+
+      <p><strong>Alert Triage and Noise Reduction</strong></p>
+      <p>This is the biggest one. AI handles alert volume that human analysts just can't cover at speed. ML-based correlation picks up patterns across data sets that are way too large for manual review. When you're in an environment generating thousands of alerts a day, AI-assisted triage is the difference between actual coverage and guessing.</p>
+
+      <p><strong>Threat Intel Enrichment</strong></p>
+      <p>IOC lookup, context generation, TTP mapping. All of it happens at a pace that manual workflows can't touch. What used to be 15 minutes of tab-switching per indicator turns into near-instant enrichment.</p>
+
+      <p><strong>Log Analysis and Summarization</strong></p>
+      <p>Parsing through large log sets and summarizing SIEM timelines cuts triage time down significantly. The analyst still makes the final call, but you get to the decision point way faster.</p>
+
+      <p><strong>Documentation and Reporting</strong></p>
+      <p>Policy drafts, incident summaries, RFC tickets, stakeholder comms. AI handles the first pass and saves you a ton of time. But human review before anything goes out is non-negotiable, especially when you're working in a HIPAA environment.</p>
+
+      <h3>Where AI Introduces Real Risk</h3>
+
+      <p><strong>LLM Prompt Injection</strong></p>
+      <p>If an AI tool is analyzing attacker-controlled data like log entries, email content, or file metadata, that data can contain crafted instructions. The model gets manipulated into producing misleading triage output, basically creating false negatives on purpose. Most SOC teams are not thinking about this when they deploy AI-assisted analysis, and that's a problem.</p>
+
+      <p><strong>PHI and Sensitive Data Exposure</strong></p>
+      <p>Security telemetry in healthcare environments regularly contains incidental PHI. The moment a cloud-hosted AI tool starts ingesting that data, you've got BAA and data residency questions that most vendors aren't ready to answer clearly.</p>
+
+      <p><strong>Automation Bias</strong></p>
+      <p>When AI consistently triages correctly, analysts stop verifying. Then the first wrong call at scale goes completely undetected. Human-in-the-loop requirements for high-severity decisions are not optional if you're running a mature SOC.</p>
+
+      <h3>The Offensive AI Problem</h3>
+      <p>Security teams spend a lot of time thinking about how AI helps defenders. Adversaries are using the same technology to attack us at the same time.</p>
+      <ul>
+        <li><strong>AI-generated phishing:</strong> LLMs produce personalized, grammatically perfect spearphishing at scale. That removes one of the historically reliable detection signals we used to count on.</li>
+        <li><strong>Deepfake vishing:</strong> voice cloning for executive impersonation in BEC scenarios is already in active use. This isn't theoretical anymore.</li>
+        <li><strong>Automated recon:</strong> AI-assisted OSINT compresses the time from target selection to campaign launch dramatically.</li>
+        <li><strong>Adversarial ML:</strong> crafted inputs designed to evade ML-based detection are a growing real-world threat to EDR and email security tools.</li>
+      </ul>
+
+      <h3>How I Evaluate AI Security Tools</h3>
+      <p>Before any AI tool touches a security environment I'm responsible for, I need answers to these questions:</p>
+      <ul>
+        <li>What data does it ingest, and does any of it qualify as PHI or PII?</li>
+        <li>Is there a BAA available if healthcare data is in scope?</li>
+        <li>Where is data processed? On-prem, cloud, or third-party hosted?</li>
+        <li>What are the data retention policies, and can I configure them?</li>
+        <li>How does the model handle attacker-controlled input? Is there prompt injection mitigation?</li>
+        <li>What's the documented FP/FN rate, and how is model drift monitored?</li>
+        <li>Is there a human-in-the-loop requirement for high-severity decisions?</li>
+      </ul>
+
+      <h3>Key Takeaways</h3>
+      <ul>
+        <li>AI does not make security teams obsolete. It makes good teams faster and exposes weak ones faster.</li>
+        <li>The risk isn't just adversarial AI. It's misplaced trust in your own AI tooling.</li>
+        <li>In healthcare, every AI tool is also a HIPAA compliance question. Don't skip that part.</li>
+        <li>SecAI+ gives you a framework for thinking about AI risk systematically, not just tactically.</li>
+      </ul>
+      <p class="callout">The orgs getting hurt aren't just the ones ignoring AI. They're also the ones deploying it without understanding what it opens up.</p>
+    `,
+  },
+};
+
+function openWriteup(key) {
+  const w = WRITEUPS[key];
+  if (!w) return;
+  const el = document.getElementById('writeupContent');
+  el.innerHTML = `
+    <div class="article-header">
+      <div class="article-cat">${w.cat}</div>
+      <h2 class="article-title">${w.title}</h2>
+      <div class="article-byline">${w.byline}</div>
+    </div>
+    <div class="article-content">${w.content}</div>
+    <div class="article-footer-tags">
+      ${w.tags.map(t => '<span class="tag">' + t + '</span>').join('')}
+    </div>`;
+  document.getElementById('writeupOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeWriteup() {
+  document.getElementById('writeupOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleWriteupOverlayClick(e) {
+  if (e.target === document.getElementById('writeupOverlay')) closeWriteup();
+}
+
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeModal();
+  if (e.key === 'Escape') {
+    closeWriteup();
+    closeModal();
+  }
 });
 
 /* ============================================
